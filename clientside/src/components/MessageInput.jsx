@@ -1,13 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Send, Smile } from 'lucide-react';
 import EmojiPicker from 'emoji-picker-react';
 
 const MessageInput = ({ message, setMessage, sendMessage, isConnected }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const emojiRef = useRef(null);
 
   const handleEmojiClick = (emojiData) => {
     setMessage((prev) => prev + emojiData.emoji);
   };
+
+  // 👇 Close emoji picker if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (emojiRef.current && !emojiRef.current.contains(event.target)) {
+        setShowEmojiPicker(false);
+      }
+    };
+
+    if (showEmojiPicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showEmojiPicker]);
 
   return (
     <div className="relative bg-white border-t border-gray-200 p-4">
@@ -44,7 +62,7 @@ const MessageInput = ({ message, setMessage, sendMessage, isConnected }) => {
 
       {/* Emoji picker popup */}
       {showEmojiPicker && (
-        <div className="absolute bottom-16 left-2 z-50">
+        <div ref={emojiRef} className="absolute bottom-16 left-2 z-50">
           <EmojiPicker onEmojiClick={handleEmojiClick} />
         </div>
       )}
