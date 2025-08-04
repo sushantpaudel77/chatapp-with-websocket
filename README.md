@@ -19,14 +19,10 @@ A simple real-time chat application built with React, Spring Boot, WebSockets (S
 
 Clone the repository:
 
-```bash
 git clone https://github.com/yourusername/chat-app.git
 cd chat-app
 Install dependencies:
 
-bash
-Copy
-Edit
 npm install
 📦 Dependencies
 Here’s a list of core packages used in the frontend:
