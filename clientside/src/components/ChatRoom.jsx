@@ -70,7 +70,7 @@ const ChatRoom = () => {
     const onError = (error) => {
       console.error('Connection failed:', error);
       setConnectionStatus('Connection Failed');
-      alert('Failed to connect to chat server. Make sure the backend is running on http://localhost:8080');
+      alert('Failed to connect to chat server running on http://localhost:8080');
     };
 
     try {
