@@ -10,7 +10,7 @@ const MessageInput = ({ message, setMessage, sendMessage, isConnected }) => {
     setMessage((prev) => prev + emojiData.emoji);
   };
 
-  // 👇 Close emoji picker if clicked outside
+  //  Close emoji picker if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (emojiRef.current && !emojiRef.current.contains(event.target)) {
